@@ -9,34 +9,30 @@
 Pod::Spec.new do |s|
   s.name             = 'RxCallKit'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of RxCallKit.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
+  s.summary          = 'Reactive extension for CallKit.'
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+	RxCallKit is an RxSwift reactive extension for CallKit.
+	Requires Xcode 10.0 with Swift 4.2.
                        DESC
 
   s.homepage         = 'https://github.com/pawelrup/RxCallKit'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'pawelrup' => 'pawelrup@lobocode.pl' }
+  s.author           = { 'Paweł Rup' => 'pawelrup@lobocode.pl' }
   s.source           = { :git => 'https://github.com/pawelrup/RxCallKit.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
 
+	s.swift_version = '4.2'
+	
   s.source_files = 'RxCallKit/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'RxCallKit' => ['RxCallKit/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+	
+	s.pod_target_xcconfig =  {
+		'SWIFT_VERSION' => '4.2',
+	}
+	
+	s.frameworks = 'CallKit'
+	s.frameworks = 'AVFoundation'
+	s.dependency 'RxSwift', '~> 4.4.0'
+	s.dependency 'RxCocoa', '~> 4.4.0'
 end
