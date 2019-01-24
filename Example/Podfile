@@ -1,0 +1,6 @@
+use_frameworks!
+target 'RxCallKit_Tests' do
+  pod 'RxCallKit', :path => '../'
+  
+  
+end
