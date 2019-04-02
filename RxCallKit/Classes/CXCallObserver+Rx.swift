@@ -55,7 +55,7 @@ public extension Reactive where Base: CXCallObserver {
 	
 	/// Called when a call is changed.
 	@available(iOS 10.0, *)
-	public var callChanged: Observable<CXCall> {
+	var callChanged: Observable<CXCall> {
 		return (delegate as! RxCXCallObserverDelegateProxy).callChanged
 	}
 }

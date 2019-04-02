@@ -8,12 +8,12 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RxCallKit'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'Reactive extension for CallKit.'
 
   s.description      = <<-DESC
 	RxCallKit is an RxSwift reactive extension for CallKit.
-	Requires Xcode 10.0 with Swift 4.2.
+	Requires Xcode 10.2 with Swift 5.0.
                        DESC
 
   s.homepage         = 'https://github.com/pawelrup/RxCallKit'
@@ -23,16 +23,16 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '10.0'
 
-	s.swift_version = '4.2'
+	s.swift_version = '5.0'
 	
   s.source_files = 'RxCallKit/Classes/**/*'
 	
 	s.pod_target_xcconfig =  {
-		'SWIFT_VERSION' => '4.2',
+		'SWIFT_VERSION' => '5.0',
 	}
 	
 	s.frameworks = 'CallKit'
 	s.frameworks = 'AVFoundation'
-	s.dependency 'RxSwift', '~> 4.4.0'
-	s.dependency 'RxCocoa', '~> 4.4.0'
+	s.dependency 'RxSwift', '~> 4.5.0'
+	s.dependency 'RxCocoa', '~> 4.5.0'
 end

@@ -108,7 +108,7 @@ public extension Reactive where Base: CXProvider {
 	/// - Parameters:
 	///   - UUID: The unique identifier of the call.
 	///   - update: The information for the call.
-	public func reportNewIncomingCall(with UUID: UUID, update: CXCallUpdate) -> Completable {
+	func reportNewIncomingCall(with UUID: UUID, update: CXCallUpdate) -> Completable {
 		return Completable.create { [unowned update] (completable: @escaping (CompletableEvent) -> Void) -> Disposable in
 			self.base.reportNewIncomingCall(with: UUID, update: update) { (error: Error?) in
 				if let error = error {
@@ -122,76 +122,76 @@ public extension Reactive where Base: CXProvider {
 	}
 	/// Called when the provider has been reset. Delegates must respond to this callback by cleaning up all internal call state (disconnecting communication channels, releasing network resources, etc.). This callback can be treated as a request to end all calls without the need to respond to any actions
 	@available(iOS 10.0, *)
-	public var didReset: Observable<Void> {
+	var didReset: Observable<Void> {
 		return (delegate as! RxCXProviderDelegateProxy).providerDidReset
 	}
 	
 	/// Called when the provider has been fully created and is ready to send actions and receive updates
 	@available(iOS 10.0, *)
-	public var didBegin: Observable<Void> {
+	var didBegin: Observable<Void> {
 		return delegate.methodInvoked(#selector(CXProviderDelegate.providerDidBegin(_:)))
 			.map { _ in () }
 	}
 	
 	/// Called when the provider performs the specified start call action.
 	@available(iOS 10.0, *)
-	public var performStartCall: Observable<CXStartCallAction> {
+	var performStartCall: Observable<CXStartCallAction> {
 		return (delegate as! RxCXProviderDelegateProxy).performStartCall
 	}
 	
 	/// Called when the provider performs the specified answer call action.
 	@available(iOS 10.0, *)
-	public var performAnswerCall: Observable<CXAnswerCallAction> {
+	var performAnswerCall: Observable<CXAnswerCallAction> {
 		return (delegate as! RxCXProviderDelegateProxy).performAnswerCall
 	}
 	
 	/// Called when the provider performs the specified end call action.
 	@available(iOS 10.0, *)
-	public var performEndCall: Observable<CXEndCallAction> {
+	var performEndCall: Observable<CXEndCallAction> {
 		return (delegate as! RxCXProviderDelegateProxy).performEndCall
 	}
 	
 	/// Called when the provider performs the specified set held call action.
 	@available(iOS 10.0, *)
-	public var performSetHeldCall: Observable<CXSetHeldCallAction> {
+	var performSetHeldCall: Observable<CXSetHeldCallAction> {
 		return (delegate as! RxCXProviderDelegateProxy).performSetHeldCall
 	}
 	
 	/// Called when the provider performs the specified set muted call action.
 	@available(iOS 10.0, *)
-	public var performSetMutedCall: Observable<CXSetMutedCallAction> {
+	var performSetMutedCall: Observable<CXSetMutedCallAction> {
 		return (delegate as! RxCXProviderDelegateProxy).performSetMutedCall
 	}
 	
 	/// Called when the provider performs the specified set group call action.
 	@available(iOS 10.0, *)
-	public var performSetGroupCall: Observable<CXSetGroupCallAction> {
+	var performSetGroupCall: Observable<CXSetGroupCallAction> {
 		return (delegate as! RxCXProviderDelegateProxy).performSetGroupCall
 	}
 	
 	/// Called when the provider performs the specified play DTMF (dual tone multifrequency) call action.
 	@available(iOS 10.0, *)
-	public var performPlayDTMFCall: Observable<CXPlayDTMFCallAction> {
+	var performPlayDTMFCall: Observable<CXPlayDTMFCallAction> {
 		return (delegate as! RxCXProviderDelegateProxy).performPlayDTMFCall
 	}
 	
 	/// Called when the provider performs the specified action times out.
 	@available(iOS 10.0, *)
-	public var timedOutPerforming: Observable<CXAction> {
+	var timedOutPerforming: Observable<CXAction> {
 		return delegate.methodInvoked(#selector(CXProviderDelegate.provider(_:timedOutPerforming:)))
 			.map { $0[1] as! CXAction }
 	}
 	
 	/// Called when the provider’s audio session is activated.
 	@available(iOS 10.0, *)
-	public var didActivate: Observable<AVAudioSession> {
+	var didActivate: Observable<AVAudioSession> {
 		return delegate.methodInvoked(#selector(CXProviderDelegate.provider(_:didActivate:)))
 			.map { $0[1] as! AVAudioSession }
 	}
 	
 	/// Called when the provider’s audio session is deactivated.
 	@available(iOS 10.0, *)
-	public var didDeactivate: Observable<AVAudioSession> {
+	var didDeactivate: Observable<AVAudioSession> {
 		return delegate.methodInvoked(#selector(CXProviderDelegate.provider(_:didDeactivate:)))
 			.map { $0[1] as! AVAudioSession }
 	}
