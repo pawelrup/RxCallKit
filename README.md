@@ -30,7 +30,7 @@ pod 'RxCallKit'
 
 ## Author
 
-pawelrup, pawelrup@lobocode.pl
+Paweł Rup, pawelrup@lobocode.pl
 
 ## License
 
