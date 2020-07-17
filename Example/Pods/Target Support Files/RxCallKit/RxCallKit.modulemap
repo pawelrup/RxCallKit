@@ -1,6 +1,0 @@
-framework module RxCallKit {
-  umbrella header "RxCallKit-umbrella.h"
-
-  export *
-  module * { export * }
-}
