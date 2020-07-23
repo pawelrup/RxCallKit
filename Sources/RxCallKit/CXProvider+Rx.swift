@@ -12,18 +12,18 @@ import RxSwift
 import RxCocoa
 
 @available(iOS 10.0, macCatalyst 13, *)
-extension CXProvider: HasDelegate {
-	
-	public typealias Delegate = CXProviderDelegate
-	
-	public var delegate: Delegate? {
-		get {
-			value(forKey: "delegate") as? Delegate
-		}
-		set(newValue) {
-			setDelegate(newValue, queue: .main)
-		}
-	}
+extension CXProvider: HasAssociatedDelegate {
+    public typealias Delegate = CXProviderDelegate
+    
+    public static var associatedDelegateKey = "CXProviderDelegateKey"
+    
+    public var delegate: Delegate? {
+        get { self.getAssociatedDelegate(forKey: &Self.associatedDelegateKey) }
+        set {
+            self.setAssociatedDelegate(newValue, forKey: &Self.associatedDelegateKey)
+            self.setDelegate(newValue, queue: .main)
+        }
+    }
 }
 
 @available(iOS 10.0, macCatalyst 13, *)
